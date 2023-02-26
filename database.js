@@ -11,7 +11,7 @@ function initDbPool() {
     user: "basic_user",
     host: "127.0.0.1",
     database: "mydb",
-    password: "eemeli123",
+    password: process.env.DB_PASSOWRD,
     port: 5432,
     max: 20, // set pool max size to 20
     idleTimeoutMillis: 1000, // close idle clients after 1 second

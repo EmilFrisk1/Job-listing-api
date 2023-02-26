@@ -10,12 +10,12 @@ async function utilHashPassword(password) {
   return hashedPassword;
 }
 
-function createJWToken(payload, options) {
+function createJWToken(payload, options, secret = process.env.JWT_SECRET) {
   try {
-    return jwt.sign(payload, process.env.JWT_SECRET, options);
+    return jwt.sign(payload, secret, options);
   } catch (error) {
     console.log("error signing jwt token: " + error);
-    return { message: error };
+    return { message: "error signing jwt token: " + error };
   }
 }
 

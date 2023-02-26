@@ -35,6 +35,14 @@ function validateSignIn(req, res, next) {
         return res.status(400).send({
           error: "The email or password is incorrect",
         });
+      case `"email" is required`:
+        return res.status(400).send({
+          error: "email is required",
+        });
+      case `"password" is required`:
+        return res.status(400).send({
+          error: "password is required",
+        });
     }
     return;
   } else {
@@ -80,7 +88,6 @@ function validateDeleteJobListing(req, res, next) {
 }
 
 function validateEditJobListing(req, res, next) {
-  console.log("got here");
   try {
     const { error } = schemas.jobListingEditSchema.validate(req.body);
 
@@ -111,9 +118,9 @@ function validateCreateJobListing(req, res, next) {
       res.status(400).json({ message: error.details[0].message });
       return;
     } else {
-      const { title, description, expirience_level, location, salary } =
+      const { title, description, experience_level, location, salary } =
         req.body;
-      const data = { title, description, expirience_level, location, salary };
+      const data = { title, description, experience_level, location, salary };
 
       validateEdit(data);
       req.body = next();
